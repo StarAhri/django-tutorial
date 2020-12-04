@@ -18,9 +18,12 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 
-# 函数 include() 允许引用其它 URLconfs。
-# 每当 Django 遇到 include() 时，它会截断与此项匹配的 URL 的部分，并将剩余的字符串发送到 URLconf 以供进一步处理。
 urlpatterns = [
     path("polls/",include('polls.urls')),
+    # 函数 include() 允许引用其它 URLconfs。
+    # 每当 Django 遇到 include() 时，它会截断与此项匹配的 URL 的部分，并将剩余的字符串发送到 URLconf 以供进一步处理。
+
     path('admin/', admin.site.urls),
+    # 当 Django 匹配上了一个 route 以后，会带个一个  HttpRequest 对象的参数来访问这个 view func
+    # 如果 route 里面有参数，那么参数会作为 kwargs 传入
 ]
